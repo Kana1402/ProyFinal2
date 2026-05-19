@@ -1,0 +1,19 @@
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+ "email": "admin@example.com",
+ "password": "password"
+}
+
+
+###
+POST http://localhost:8000/api/logout
+Authorization: Bearer 3|44L9OP9bIvNlxBk6o6mNn7WAaBRTjCm2gfgqFwWx6833da0d
+Accept: application/json
+
+
+###
+GET http://localhost:8000/api/barcos
+Authorization: Bearer 1|9bL7CwRyvvKqc8yU8K43SVr4vZ5nDj0AZ4bIkia594f78247
+Accept: application/json

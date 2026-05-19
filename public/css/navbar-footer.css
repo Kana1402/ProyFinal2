@@ -1,0 +1,131 @@
+/* ===========================
+   NAVBAR & FOOTER - layout.css
+   =========================== */
+
+/* Navbar Styles - Emerald Theme */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(24, 57, 43, 0.063); /* Evergreen con transparencia */
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.4rem 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(to right, #ffffff, #066839);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #066839;
+}
+
+.btn-auth {
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.btn-auth:hover {
+    border-color: #066839;
+    color: #066839;
+}
+
+/* Footer Styles - Deep Forest Theme */
+.main-footer {
+    background: linear-gradient(to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        #0e1614 20%,
+        #141e1c 40%,
+        #1d2e28 70%,
+        #1d2e28 100%);
+    padding: 100px 10% 50px;
+    border-top: none;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 80px;
+}
+
+.footer-col h4 {
+    margin-bottom: 2.5rem;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #066839;
+    text-transform: uppercase;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    color: #94a3b8;
+}
+
+.social-links {
+    list-style: none;
+    padding: 0;
+}
+
+.social-links li {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: #066839;
+    transform: translateX(5px);
+}
+
+.footer-map iframe {
+    width: 100%;
+    border-radius: 20px;
+    filter: invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2); /* Efecto de modo oscuro */
+    transition: filter 0.3s ease;
+}
+
+.footer-map iframe:hover {
+    filter: invert(90%) hue-rotate(180deg) brightness(1) contrast(1.2);
+}
+
+@media (max-width: 992px) {
+    .nav-links { display: none; }
+}

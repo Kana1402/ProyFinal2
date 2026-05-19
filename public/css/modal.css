@@ -1,0 +1,233 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--bg-section);
+    width: 100%;
+    max-width: 900px;
+    max-height: 85vh;
+    border-radius: 20px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 20px;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--primary);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+#modal-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+.modal-text-content {
+    padding: 3rem;
+}
+
+.modal-author {
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.85rem;
+}
+
+#modal-title {
+    font-size: 2.5rem;
+    margin: 1rem 0;
+    line-height: 1.2;
+    color: var(--text-light);
+}
+
+.modal-date {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.modal-description {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+@media (max-width: 768px) {
+    .modal { padding: 1rem; }
+    .modal-text-content { padding: 1.5rem; }
+    #modal-title { font-size: 1.8rem; }
+    #modal-img { height: 250px; }
+}
+
+/* ===========================
+   FORM STYLES FOR RESERVATION MODAL
+   =========================== */
+/* Form inputs are now globally styled in style.css */
+
+.btn-submit-reserva {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 1rem;
+}
+
+.btn-submit-reserva:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-submit-reserva:active {
+    transform: translateY(0);
+}
+
+/* ===========================
+   LOGIN / REGISTER MODAL
+   =========================== */
+.auth-modal .modal-body {
+    flex-direction: row;
+    min-height: 500px;
+}
+
+.modal-info {
+    width: 40%;
+    background: linear-gradient(
+        135deg,
+        var(--dark-emerald),
+        var(--jet-black)
+    );
+    color: white;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 20px 0 0 20px;
+}
+
+.modal-info h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.modal-info p {
+    color: #e2e8f0;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+.modal-form-container {
+    width: 60%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal-form-container form {
+    width: 100%;
+}
+
+.modal-form-container h3 {
+    color: var(--text-light);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.switch-text {
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+}
+
+/* ===========================
+   RESPONSIVE LOGIN
+   =========================== */
+
+@media (max-width: 768px) {
+
+    .modal-body,
+    .auth-modal .modal-body {
+        flex-direction: column;
+    }
+
+    .modal-info {
+        width: 100%;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .modal-form-container {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .modal-form-container h3 {
+        font-size: 1.6rem;
+    }
+
+    .modal-info h2 {
+        font-size: 1.8rem;
+    }
+}

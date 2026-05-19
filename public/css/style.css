@@ -1,0 +1,219 @@
+:root {
+    /* Paleta Solicitada - Esmeralda Profundo */
+    --dark-emerald: #066839;
+    --emerald-depths: #0a5c36;
+    --emerald-depths-2: #0f5132;
+    --deep-forest: #14452f;
+    --evergreen: #18392b;
+    --jet-black: #1d2e28;
+    --carbon-black: #212224;
+
+    /* Mapeo de Variables del Sistema */
+    --primary: var(--dark-emerald);
+    --primary-hover: var(--emerald-depths);
+    --bg-dark: var(--carbon-black);
+    --bg-section: var(--jet-black);
+    --text-light: #ffffff;
+    --text-muted: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #000000;
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- Botones Globales --- */
+.btn {
+    padding: 1.1rem 3rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: none;
+    box-shadow: 0 5px 20px rgba(6, 104, 57, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--emerald-depths);
+    transform: translateY(-5px);
+}
+
+.btn-green {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    padding: 1rem 4rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-green:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* --- Form Inputs Globales --- */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.modal-input {
+    width: 100%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    color: var(--text-light);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+.modal-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(6, 104, 57, 0.3);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder,
+.modal-input::placeholder {
+    color: #64748b;
+}
+
+.form-group select option,
+.modal-input option {
+    background: var(--bg-section);
+    color: var(--text-light);
+}
+
+/* --- Títulos de Sección Globales --- */
+.section-title {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+    text-align: center;
+    color: var(--text-light);
+    font-weight: 900;
+}
+
+.section-title-left {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 2.5rem;
+    font-weight: 900;
+}
+
+/* --- Animaciones Globales --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* --- Media queries globales --- */
+@media (max-width: 768px) {
+    .section-title { font-size: 2.2rem; }
+}
+
+/*---- Estilos de la seccion del hero de la pagina de inicio ----*/
+.hero {
+    height: 120vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.5) 15%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.5) 85%,
+            rgba(0, 0, 0, 1) 100%),
+        url('/images/cahuita.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    color: #e2e8f0;
+    max-width: 800px;
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.9);
+    margin: 0 auto 3.5rem;
+}
+
+
