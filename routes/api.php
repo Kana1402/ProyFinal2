@@ -4,12 +4,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-
-Route::middleware('auth:sanctum')->group(function () {});
+/*
+|--------------------------------------------------------------------------
+| RUTAS PÚBLICAS (NIVEL VISITANTE)
+|--------------------------------------------------------------------------
+| Estas rutas NO están protegidas por el middleware 'auth:sanctum'.
+| Cualquier persona puede acceder a ellas sin necesidad de enviar un token.
+| Son ideales para iniciar sesión, registrarse, o ver información pública
+| (como noticias, servicios disponibles, etc).
+*/
 
 Route::post('/login', function (Request $request) {
     $user = \App\Models\User::where('correo', $request->email)
@@ -38,7 +41,7 @@ Route::post('/register', function (Request $request) {
         'correo' => $request->email,
         'telefono' => $request->telefono,
         'password' => $request->password,
-        'role' => \App\Enums\Role::USER->value,
+        'role' => \App\Enums\Role::USER->value, // Por defecto al registrarse son USER
     ]);
 
     $token = $user->createToken('token')->plainTextToken;
@@ -46,14 +49,55 @@ Route::post('/register', function (Request $request) {
     return response()->json(['token' => $token]);
 });
 
-Route::post('/logout', function (Request $request) {
-    $request->user()->currentAccessToken()->delete();
 
-    return response()->json([
-        'message' => 'Sesión cerrada'
-    ]);
-})->middleware('auth:sanctum');
+/*
+|--------------------------------------------------------------------------
+| RUTAS PRIVADAS (REQUIEREN INICIAR SESIÓN)
+|--------------------------------------------------------------------------
+| Todo lo que esté dentro de este grupo 'auth:sanctum' requiere que el 
+| usuario envíe un token Bearer válido.
+*/
+Route::middleware('auth:sanctum')->group(function () {
 
-Route::middleware('auth:sanctum')->get('/perfil', function (Request $request) {
-    return $request->user();
+    // --- RUTAS PARA CUALQUIER USUARIO LOGUEADO (USER Y ADMIN) ---
+    // Ejemplos: Ver su propio perfil, cerrar sesión, apuntarse a un servicio.
+    
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    
+    Route::get('/perfil', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/logout', function (Request $request) {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['message' => 'Sesión cerrada']);
+    });
+
+    // Rutas del controlador de usuarios: 
+    // Exceptuamos 'index' y 'destroy' para que los usuarios normales NO 
+    // puedan ver la lista de todos los usuarios ni eliminarlos.
+    Route::apiResource('users', \App\Http\Controllers\Api\UserController::class)
+        ->except(['destroy', 'index']);
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | RUTAS EXCLUSIVAS DEL ADMINISTRADOR
+    |--------------------------------------------------------------------------
+    | Al anidar este middleware 'role:ADMIN' dentro de 'auth:sanctum', le 
+    | estamos diciendo a Laravel: "Para entrar aquí, primero debes tener un
+    | token válido, Y además, tu rol debe ser exactamente ADMIN".
+    */
+    Route::middleware('role:ADMIN')->group(function () {
+        
+        // El administrador sí puede ver la lista de todos los usuarios
+        Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index']); 
+        
+        // El administrador sí puede eliminar a cualquier usuario
+        Route::delete('/users/{user}', [\App\Http\Controllers\Api\UserController::class, 'destroy']); 
+        
+    });
+
 });
