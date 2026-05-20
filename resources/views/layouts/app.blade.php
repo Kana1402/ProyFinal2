@@ -39,6 +39,7 @@
 
 
     @include('modals.login-register-modal')
+    @include('modals.news-modal')
 
 
     <!--Scripts globales de los componentes e individuales -->

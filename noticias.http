@@ -1,0 +1,44 @@
+### Login admin (obtén token Bearer)
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password"
+}
+
+### Listar noticias públicas
+GET http://localhost:8000/api/noticias
+Content-Type: application/json
+
+### Ver noticia por id
+GET http://localhost:8000/api/noticias/1
+Content-Type: application/json
+
+### Crear noticia (ADMIN)
+POST http://localhost:8000/api/noticias
+Content-Type: application/json
+Authorization: Bearer 15|123Xr4KkayOPONeWsz2tEfwkcFNRgNwsCDtW6msc224d6322
+
+{
+  "titulo": "Nueva noticia de prueba",
+  "contenido": "Este es el cuerpo de la noticia.",
+  "autor_id": 1
+}
+
+### Actualizar noticia (ADMIN)
+PUT http://localhost:8000/api/noticias/1
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+  "titulo": "Noticia actualizada",
+  "contenido": "Contenido actualizado de la noticia.",
+  "autor_id": 1
+}
+
+### Eliminar noticia (ADMIN)
+DELETE http://localhost:8000/api/noticias/1
+Authorization: Bearer 
+
+

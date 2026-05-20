@@ -49,6 +49,9 @@ Route::post('/register', function (Request $request) {
     return response()->json(['token' => $token]);
 });
 
+Route::apiResource('noticias', \App\Http\Controllers\Api\NoticiaController::class)
+    ->only(['index', 'show']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +100,9 @@ Route::middleware('auth:sanctum')->group(function () {
         
         // El administrador sí puede eliminar a cualquier usuario
         Route::delete('/users/{user}', [\App\Http\Controllers\Api\UserController::class, 'destroy']); 
+
+        Route::apiResource('noticias', \App\Http\Controllers\Api\NoticiaController::class)
+            ->only(['store', 'update', 'destroy']);
         
     });
 

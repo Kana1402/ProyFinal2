@@ -1,4 +1,6 @@
 <!-- Modal Login / Registro -->
+
+
 <div id="login-register-modal" class="modal auth-modal">
     <div class="modal-content">
         <!-- Botón cerrar -->
