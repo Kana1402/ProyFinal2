@@ -1,0 +1,70 @@
+###
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+ "email": "admin@example.com",
+ "password": "password"
+}
+
+
+
+###
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+ "email": "kana@gmail.com",
+ "password": "123"
+}
+
+###
+register
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+    "username": "testuser",
+    "email": "test@example.com",
+    "telefono": "123456789",
+    "password": "password"
+}
+
+###
+POST http://localhost:8000/api/logout
+Content-Type: application/json
+Authorization: Bearer 13|jU3DCL711Jq4rkCa6NMSyTVkhqnSTnzWW9q7XpdK0ae4f1e3
+
+###
+
+GET http://localhost:8000/api/perfil
+Content-Type: application/json
+Authorization: Bearer 14|HHyNqg1PMOZ0h1dMcE7c4fV4HlhaDp1krstQfylhad9e45de
+###
+
+GET http://localhost:8000/api/users
+Content-Type: application/json
+Authorization: Bearer 14|HHyNqg1PMOZ0h1dMcE7c4fV4HlhaDp1krstQfylhad9e45de
+
+###
+GET http://localhost:8000/api/users/1
+Content-Type: application/json
+Authorization: Bearer 14|HHyNqg1PMOZ0h1dMcE7c4fV4HlhaDp1krstQfylhad9e45de
+
+###
+actualizar usuario
+PUT http://localhost:8000/api/users/1
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+    "username": "newusername",
+    "correo": "new@example.com",
+    "telefono": "987654321"
+}
+
+###
+eliminar usuario
+DELETE http://localhost:8000/api/users/1
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
