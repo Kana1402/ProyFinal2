@@ -1,0 +1,51 @@
+@base_url = http://127.0.0.1:8000
+@token = 23|cBJaHC8D1y5In3pdsb4Jh87O8gaw6AqSC3qHIvVv8a35b221
+@image =./images/a.png
+
+### Login
+POST {{base_url}}/api/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password"
+}
+
+
+### Listar todos los servicios
+GET {{base_url}}/api/servicios
+
+### Obtener un servicio por ID
+GET {{base_url}}/api/servicios/1
+
+### Probar actividades programadas con sesión iniciada
+GET {{base_url}}/api/actividades-programadas/usuario
+Authorization: Bearer {{token}}
+
+### Crear un servicio (requiere admin)
+POST {{base_url}}/api/servicios
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "titulo": "Servicio de ejemplo 2",
+  "descripcion": "Descripción del servicio de prueba.",
+  "precio": 11500,
+  "imagen_url": "https://example.com/servicio.jpg"
+}
+
+### Actualizar un servicio (requiere admin)
+PATCH {{base_url}}/api/servicios/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "titulo": "Servicio actualizado",
+  "descripcion": "Descripción actualizada del servicio.",
+  "precio": 1750,
+  "imagen_url": "./images/a.png"
+}
+
+### Eliminar un servicio (requiere admin)
+DELETE {{base_url}}/api/servicios/1
+Authorization: Bearer {{token}}
