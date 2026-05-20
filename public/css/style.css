@@ -1,3 +1,8 @@
+/* ===========================
+   GLOBAL STYLES - style.css
+   Cargado en app.blade.php (todas las páginas)
+   =========================== */
+
 :root {
     /* Paleta Solicitada - Esmeralda Profundo */
     --dark-emerald: #066839;
@@ -76,72 +81,6 @@ body {
     color: white;
 }
 
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.1);
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,0.15);
-}
-
-.btn-block {
-    display: block;
-    width: 100%;
-}
-
-/* --- Form Inputs Globales --- */
-.form-group {
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
-    display: block;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea,
-.modal-input {
-    width: 100%;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    border-radius: 10px;
-    padding: 0.9rem 1rem;
-    color: var(--text-light);
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus,
-.modal-input:focus {
-    outline: none;
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 0 2px rgba(6, 104, 57, 0.3);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder,
-.modal-input::placeholder {
-    color: #64748b;
-}
-
-.form-group select option,
-.modal-input option {
-    background: var(--bg-section);
-    color: var(--text-light);
-}
-
 /* --- Títulos de Sección Globales --- */
 .section-title {
     font-size: 3rem;
@@ -216,4 +155,21 @@ body {
     margin: 0 auto 3.5rem;
 }
 
+
+/*---- Estilos de la seccion de noticias de la pagina de inicio ----*/
+.section-news {
+    padding: 160px 10%;
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.6) 15%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 1) 100%),
+        url('/images/cocodrilo.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
 

@@ -26,15 +26,17 @@ class UserController extends Controller
         if ($request->user()->role !== Role::ADMIN) {
             return response()->json(['message' => 'No autorizado'], 403);
         }
-
+        // Validar los datos de entrada
         $request->validate([
             'username' => 'required|string|max:255',
             'correo' => 'required|email|unique:usuarios,correo',
             'telefono' => 'nullable|string|max:20',
             'password' => 'required|string|min:6',
+            // El rol es opcional y solo puede ser asignado por un ADMIN
             'role' => 'nullable|string|in:ADMIN,USER,VISITOR',
         ]);
 
+        // Crear el nuevo usuario
         $user = User::create([
             'username' => $request->username,
             'correo' => $request->correo,

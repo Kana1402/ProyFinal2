@@ -39,16 +39,13 @@
 
 
     @include('modals.login-register-modal')
+    @include('modals.news-modal')
 
 
     <!--Scripts globales de los componentes e individuales -->
     <!--Scripts del welcome.blade.php y publication.blade.php-->
     <!--Scripts del last-news-publications y publication-news-->
     <script src="{{ asset('js/news-publications.js') }}"></script>
-    <!--Scripts del we.blade.php-->
-    <!--Scripts del member-->
-    <script src="{{ asset('js/miembros-directiva.js') }}"></script>
-    <!--Scripts del services.blade.php-->
     <!--Scripts del new-services-->
     <script src="{{ asset('js/news-services.js') }}"></script>
     <!--Scripts del login-register.blade.php-->

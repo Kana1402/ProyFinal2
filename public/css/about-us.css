@@ -1,0 +1,63 @@
+/* --- Quienes Somos (widget en la home) --- */
+.quienes-somos {
+    padding: 180px 10%;
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.6) 15%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 1) 100%),
+        url('/images/rana-azul.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.quienes-somos-container {
+    display: flex;
+    align-items: center;
+    gap: 25%;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.quienes-somos-text {
+    flex: 1.2;
+    text-align: center;
+    padding: 0 2rem;
+}
+
+.quienes-somos-text p {
+    color: #ebebeb;
+    font-size: 1.25rem;
+    line-height: 1.9;
+    margin-bottom: 3rem;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.quienes-somos-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.square-img {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1.2 / 1;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 992px) {
+    .quienes-somos-container {
+        flex-direction: column;
+    }
+}
+
