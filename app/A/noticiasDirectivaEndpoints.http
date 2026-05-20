@@ -1,0 +1,208 @@
+@baseUrl = http://localhost:8000/api
+@token = 25|RV6924xH7X5dZrNMISqkvHvXSelNHZ1kr0AngfyH3d64049e
+@servicioId = 1
+@actividadId = 1
+
+###
+POST {{baseUrl}}/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "password"
+}
+
+###
+listar noticias
+GET {{baseUrl}}/noticias
+Accept: application/json
+
+###
+ver noticia
+GET {{baseUrl}}/noticias/1
+Accept: application/json
+
+###
+crear noticia
+POST {{baseUrl}}/noticias
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Nueva noticia",
+    "contenido": "Contenido completo de la noticia.",
+    "imagen_url": "https://example.com/noticia.jpg",
+    "autor_id": 1
+}
+
+###
+actualizar noticia
+PUT {{baseUrl}}/noticias/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Noticia actualizada",
+    "contenido": "Contenido actualizado de la noticia.",
+    "imagen_url": "https://example.com/noticia-actualizada.jpg",
+    "autor_id": 1
+}
+
+###
+eliminar noticia
+DELETE {{baseUrl}}/noticias/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}/miembros-directiva
+Accept: application/json
+
+###
+ver miembro directiva
+GET {{baseUrl}}/miembros-directiva/1
+Accept: application/json
+
+###
+POST {{baseUrl}}/miembros-directiva
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Ana Rodriguez",
+    "puesto": "Presidenta",
+    "biografia": "Biografia breve de la persona integrante de la directiva.",
+    "foto_url": "https://example.com/ana.jpg",
+    "orden_prioridad": 1
+}
+
+###
+
+PUT {{baseUrl}}/miembros-directiva/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Ana Rodriguez",
+    "puesto": "Presidenta",
+    "biografia": "Biografia actualizada de la persona integrante de la directiva.",
+    "foto_url": "./images/a.png",
+    "orden_prioridad": 1
+}
+
+###
+eliminar miembro directiva
+DELETE {{baseUrl}}/miembros-directiva/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+listar servicios
+GET {{baseUrl}}/servicios
+Accept: application/json
+
+###
+ver servicio con actividades
+GET {{baseUrl}}/servicios/{{servicioId}}
+Accept: application/json
+
+###
+crear servicio
+POST {{baseUrl}}/servicios
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Tour de pesca artesanal",
+    "descripcion": "Experiencia guiada de pesca artesanal en Cahuita.",
+    "precio": 25000,
+    "imagen_url": "https://example.com/servicio.jpg"
+}
+
+###
+actualizar servicio
+PUT {{baseUrl}}/servicios/{{servicioId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Tour de pesca artesanal actualizado",
+    "descripcion": "Experiencia guiada de pesca artesanal con equipo incluido.",
+    "precio": 30000,
+    "imagen_url": "https://example.com/servicio-actualizado.jpg"
+}
+
+###
+eliminar servicio
+DELETE {{baseUrl}}/servicios/{{servicioId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### listar actividades programadas
+GET {{baseUrl}}/actividades-programadas
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### listar actividades de un servicio
+GET {{baseUrl}}/servicios/{{servicioId}}/actividades
+Accept: application/json
+
+###
+ver actividad programada
+GET {{baseUrl}}/actividades-programadas/{{actividadId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### crear actividad para un servicio
+POST {{baseUrl}}/actividades-programadas
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "servicio_id": {{servicioId}},
+    "fecha_hora": "2026-06-15 09:00:00",
+    "cupo_maximo": 10,
+    "estado": "PROGRAMADA"
+}
+
+###
+actualizar actividad programada
+PUT {{baseUrl}}/actividades-programadas/{{actividadId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "servicio_id": {{servicioId}},
+    "fecha_hora": "2026-06-15 10:00:00",
+    "cupo_maximo": 12,
+    "estado": "PROGRAMADA"
+}
+
+###
+cancelar actividad programada
+PUT {{baseUrl}}/actividades-programadas/{{actividadId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "servicio_id": {{servicioId}},
+    "fecha_hora": "2026-06-15 10:00:00",
+    "cupo_maximo": 12,
+    "estado": "CANCELADA"
+}
+
+###
+eliminar actividad programada
+DELETE {{baseUrl}}/actividades-programadas/{{actividadId}}
+Accept: application/json
+Authorization: Bearer {{token}}

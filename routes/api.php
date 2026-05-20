@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\ActividadProgramada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,11 @@ Route::apiResource('noticias', \App\Http\Controllers\Api\NoticiaController::clas
 Route::apiResource('miembros-directiva', \App\Http\Controllers\Api\MiembroDirectivaController::class)
     ->only(['index', 'show']);
 
+Route::apiResource('servicios', \App\Http\Controllers\Api\ServicioController::class)
+    ->only(['index', 'show']);
+
+Route::get('/servicios/{servicio}/actividades', [\App\Http\Controllers\Api\ActividadProgramadaController::class, 'porServicio']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -87,6 +93,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', function (Request $request) {
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Sesión cerrada']);
+    });
+
+    Route::get('/actividades-programadas/usuario', function (Request $request) {
+        return response()->json([
+            'success' => true,
+            'user' => $request->user(),
+            'data' => ActividadProgramada::with('servicio')->orderBy('fecha_hora')->get(),
+            'message' => 'Actividades programadas accesibles con sesión iniciada',
+        ]);
     });
 
     // Rutas del controlador de usuarios: 
@@ -119,6 +134,11 @@ Route::middleware('auth:sanctum')->group(function () {
         // El administrador puede crear, editar y eliminar miembros de la directiva
         Route::apiResource('miembros-directiva', \App\Http\Controllers\Api\MiembroDirectivaController::class)
             ->only(['store', 'update', 'destroy']);
+
+        Route::apiResource('servicios', \App\Http\Controllers\Api\ServicioController::class)
+            ->only(['store', 'update', 'destroy']);
+
+        Route::apiResource('actividades-programadas', \App\Http\Controllers\Api\ActividadProgramadaController::class);
         
     });
 

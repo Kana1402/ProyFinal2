@@ -40,6 +40,7 @@
 
     @include('modals.login-register-modal')
     @include('modals.news-modal')
+    @include('modals.services-modal')
 
 
     <!--Scripts globales de los componentes e individuales -->
