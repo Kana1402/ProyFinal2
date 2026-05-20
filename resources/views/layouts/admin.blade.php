@@ -29,13 +29,9 @@
 <body>
     <!--Secciones de la pagina -->
 
-    @include('partials.navbar')<!--Barra de navegacion -->
-
     <main><!--Contenido principal de la pagina -->
         @yield('content')
     </main>
-
-    @include('partials.footer')
 
 
     @include('modals.login-register-modal')

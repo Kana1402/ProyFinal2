@@ -6,5 +6,10 @@
 
 <!--Contenido -->
 @section('content')
-    @include('partials.hero-about-us')
+
+    <div style="padding-top: 100px;"> <!-- Espacio para el navbar fijo -->
+        @include('partials.hero-about-us')
+        @include('partials.member')
+    </div>
+    
 @endsection

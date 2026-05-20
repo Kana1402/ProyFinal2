@@ -25,7 +25,15 @@ Route::post('/login', function (Request $request) {
 
     $token = $user->createToken('token')->plainTextToken;
 
-    return response()->json(['token' => $token]);
+    return response()->json([
+        'token' => $token,
+        'user' => [
+            'id' => $user->id,
+            'username' => $user->username,
+            'correo' => $user->correo,
+            'role' => $user->role->value,
+        ],
+    ]);
 });
 
 Route::post('/register', function (Request $request) {
@@ -50,6 +58,9 @@ Route::post('/register', function (Request $request) {
 });
 
 Route::apiResource('noticias', \App\Http\Controllers\Api\NoticiaController::class)
+    ->only(['index', 'show']);
+
+Route::apiResource('miembros-directiva', \App\Http\Controllers\Api\MiembroDirectivaController::class)
     ->only(['index', 'show']);
 
 
@@ -101,7 +112,12 @@ Route::middleware('auth:sanctum')->group(function () {
         // El administrador sí puede eliminar a cualquier usuario
         Route::delete('/users/{user}', [\App\Http\Controllers\Api\UserController::class, 'destroy']); 
 
+        // El administrador puede crear, editar y eliminar noticias 
         Route::apiResource('noticias', \App\Http\Controllers\Api\NoticiaController::class)
+            ->only(['store', 'update', 'destroy']);
+
+        // El administrador puede crear, editar y eliminar miembros de la directiva
+        Route::apiResource('miembros-directiva', \App\Http\Controllers\Api\MiembroDirectivaController::class)
             ->only(['store', 'update', 'destroy']);
         
     });
