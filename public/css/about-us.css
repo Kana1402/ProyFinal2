@@ -61,3 +61,188 @@
     }
 }
 
+
+
+/* ==========================================================================
+   SHARED ELEMENTS
+   ========================================================================== */
+
+.wwa-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 60%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==========================================================================
+   WHO WE ARE SECTION
+   ========================================================================== */
+
+
+.who-we-are-section {
+    padding: 180px 10%;
+    background:
+        linear-gradient(to left,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0) 30%,
+            rgba(0, 0, 0, 0.8) 60%,
+            rgba(0, 0, 0, 1) 100%),
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.6) 15%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 1) 100%),
+        url('/images/letrero-cahuita.png');
+    background-size: cover;
+    background-position: right center;
+    position: relative;
+}
+
+.wwa-header {
+    text-align: left;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.wwa-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #94a3b8;
+    max-width: 580px;
+    margin: 0 0 1.5rem;
+}
+
+/* ==========================================================================
+   MISSION & VISION SECTION
+   ========================================================================== */
+
+.mission-vision-section {
+    padding-top: 10px;
+    padding-bottom: 1%;
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0.6) 15%,
+            rgba(0, 0, 0, 0.15) 35%,
+            rgba(0, 0, 0, 0.15) 65%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 1) 100%);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.mv-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.mv-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+/* --- Cards --- */
+.mv-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.mv-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 24px;
+    padding: 3.5rem 3rem;
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.mv-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(6, 104, 57, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(6, 104, 57, 0.08);
+}
+
+.mv-card-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), #34d399);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.mv-card:hover .mv-card-accent {
+    transform: scaleX(1);
+}
+
+.mv-card-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(6, 104, 57, 0.12);
+    border: 1px solid rgba(6, 104, 57, 0.25);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    color: #34d399;
+    transition: background 0.3s ease;
+}
+
+.mv-card:hover .mv-card-icon {
+    background: rgba(6, 104, 57, 0.2);
+}
+
+.mv-card-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.mv-card-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mv-card-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+    .mv-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .mv-card {
+        padding: 2.5rem 2rem;
+    }
+
+    .mission-vision-section,
+    .who-we-are-section {
+        padding: 80px 5%;
+    }
+
+    .wwa-title {
+        font-size: 2.5rem;
+    }
+}

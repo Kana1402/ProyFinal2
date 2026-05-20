@@ -1,0 +1,100 @@
+@baseUrl = http://localhost:8000/api
+@token = 18|F1mQp6QieiTNu3wP0MSA5Cla0Q2xUcFqtL2a2rsY2f073854
+
+###
+POST {{baseUrl}}/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "admin@example.com",
+    "password": "password"
+}
+
+###
+listar noticias
+GET {{baseUrl}}/noticias
+Accept: application/json
+
+###
+ver noticia
+GET {{baseUrl}}/noticias/1
+Accept: application/json
+
+###
+crear noticia
+POST {{baseUrl}}/noticias
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Nueva noticia",
+    "contenido": "Contenido completo de la noticia.",
+    "imagen_url": "https://example.com/noticia.jpg",
+    "autor_id": 1
+}
+
+###
+actualizar noticia
+PUT {{baseUrl}}/noticias/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "titulo": "Noticia actualizada",
+    "contenido": "Contenido actualizado de la noticia.",
+    "imagen_url": "https://example.com/noticia-actualizada.jpg",
+    "autor_id": 1
+}
+
+###
+eliminar noticia
+DELETE {{baseUrl}}/noticias/1
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+GET {{baseUrl}}/miembros-directiva
+Accept: application/json
+
+###
+ver miembro directiva
+GET {{baseUrl}}/miembros-directiva/1
+Accept: application/json
+
+###
+POST {{baseUrl}}/miembros-directiva
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Ana Rodriguez",
+    "puesto": "Presidenta",
+    "biografia": "Biografia breve de la persona integrante de la directiva.",
+    "foto_url": "https://example.com/ana.jpg",
+    "orden_prioridad": 1
+}
+
+###
+
+PUT {{baseUrl}}/miembros-directiva/1
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "nombre": "Ana Rodriguez",
+    "puesto": "Presidenta",
+    "biografia": "Biografia actualizada de la persona integrante de la directiva.",
+    "foto_url": "./images/a.png",
+    "orden_prioridad": 1
+}
+
+###
+eliminar miembro directiva
+DELETE {{baseUrl}}/miembros-directiva/1
+Accept: application/json
+Authorization: Bearer {{token}}

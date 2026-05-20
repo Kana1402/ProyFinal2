@@ -148,6 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error(e);
             }
             localStorage.removeItem('auth_token');
+            localStorage.removeItem('auth_user');
             window.location.reload();
         });
     }
@@ -155,6 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================
     // LOGIN FORM SUBMIT
     // =========================
+    // LO QUE HACE ES QUE AL ENVIAR EL FORMULARIO DE LOGIN, HACE UNA PETICIÓN POST A /api/login 
+    // CON LOS DATOS DEL FORMULARIO. SI LA RESPUESTA ES EXITOSA, GUARDA EL TOKEN Y 
+    // LA INFO DEL USUARIO EN LOCALSTORAGE, CIERRA EL MODAL Y RECARGA LA PÁGINA. 
+    // SI EL USUARIO ES ADMIN, LO REDIRIGE AL DASHBOARD DE ADMINISTRACIÓN.
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         loginForm.addEventListener('submit', async function (e) {
@@ -178,9 +183,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (response.ok) {
                     const result = await response.json();
                     localStorage.setItem('auth_token', result.token);
+                    localStorage.setItem('auth_user', JSON.stringify(result.user));
                     alert('Inicio de sesión exitoso');
                     loginModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
+
+                    if (result.user && result.user.role === 'ADMIN') {
+                        window.location.href = '/admin';
+                        return;
+                    }
+
                     window.location.reload();
                 } else {
                     const error = await response.json();
