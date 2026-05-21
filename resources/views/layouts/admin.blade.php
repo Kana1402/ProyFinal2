@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="{{ asset('css/modal.css') }}">    
     <!--Estilos de about-us-->
     <link rel="stylesheet" href="{{ asset('css/about-us.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
 
 </head>
@@ -48,6 +49,9 @@
     <script src="{{ asset('js/login-register.js') }}"></script>
     <!--Scripts de miembros-->
     <script src="{{ asset('js/miembros-directiva.js') }}"></script>
+    <script src="{{ asset('js/admin-users.js') }}"></script>
+    <script src="{{ asset('js/admin-members.js') }}"></script>
+    <script src="{{ asset('js/admin-news.js') }}"></script>
    
 </body>
 
