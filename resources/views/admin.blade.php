@@ -44,11 +44,12 @@
     </script>
 
     <div style="padding-top: 100px;"> <!-- Espacio para el navbar fijo -->
+        @include('admin.admin-users')    
         @include('admin.admin-members')
         @include('admin.admin-news')
         @include('admin.admin-reservations')
         @include('admin.admin-service')
-        @include('admin.admin-users')
+        
     </div>
     
 @endsection
