@@ -56,6 +56,8 @@
     <script src="{{ asset('js/admin-users.js') }}"></script>
     <script src="{{ asset('js/admin-members.js') }}"></script>
     <script src="{{ asset('js/admin-news.js') }}"></script>
+    <script src="{{ asset('js/admin-services.js') }}"></script>
+    <script src="{{ asset('js/admin-activities.js') }}"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -49,7 +49,7 @@
         @include('admin.admin-news')
         @include('admin.admin-reservations')
         @include('admin.admin-service')
-        
+        @include('admin.admin-activities')
     </div>
     
 @endsection
