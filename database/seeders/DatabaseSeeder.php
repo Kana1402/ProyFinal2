@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use App\Enums\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,5 +25,50 @@ class DatabaseSeeder extends Seeder
             'role' => Role::ADMIN,
             'telefono' => '12345678'
         ]);
+
+        // ───────────────── NOTICIAS ─────────────────
+
+        DB::table('noticias')->insert([
+            [
+                'titulo' => 'Nueva jornada de pesca',
+                'contenido' => 'Se realizó una jornada de pesca sostenible en Cahuita.',
+                'imagen_url' => 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e',
+                'autor_id' => 1,
+                'fecha_publicacion' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'titulo' => 'Capacitación ambiental',
+                'contenido' => 'Los pescadores participaron en una capacitación ambiental.',
+                'imagen_url' => 'https://images.unsplash.com/photo-1493558103817-58b2924bce98',
+                'autor_id' => 1,
+                'fecha_publicacion' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        // ───────────────── SERVICIOS ─────────────────
+
+        DB::table('servicios')->insert([
+            [
+                'titulo' => 'Tour de pesca',
+                'descripcion' => 'Tour guiado de pesca artesanal.',
+                'precio' => 25000,
+                'imagen_url' => 'https://images.unsplash.com/photo-1544551763-46a013bb70d5',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'titulo' => 'Tour en bote',
+                'descripcion' => 'Recorrido por Cahuita en bote.',
+                'precio' => 18000,
+                'imagen_url' => 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
     }
 }
