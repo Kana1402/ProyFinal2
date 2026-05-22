@@ -130,9 +130,38 @@ document.addEventListener('DOMContentLoaded', function () {
     // =========================
     const token = localStorage.getItem('auth_token');
     const authButtons = document.querySelector('.auth-buttons');
+
+    function updateAdminToggleButton() {
+        const adminToggleBtn = document.getElementById('admin-toggle-btn');
+        if (!adminToggleBtn) {
+            return;
+        }
+
+        let authUser = null;
+        try {
+            authUser = JSON.parse(localStorage.getItem('auth_user'));
+        } catch (e) {
+            authUser = null;
+        }
+
+        if (authUser && authUser.role === 'ADMIN') {
+            adminToggleBtn.style.display = 'inline-flex';
+            if (window.location.pathname === '/admin') {
+                adminToggleBtn.textContent = 'Ver sitio';
+                adminToggleBtn.onclick = () => window.location.href = '/';
+            } else {
+                adminToggleBtn.textContent = 'Panel admin';
+                adminToggleBtn.onclick = () => window.location.href = '/admin';
+            }
+        } else {
+            adminToggleBtn.style.display = 'none';
+        }
+    }
+
     if (token && authButtons) {
         authButtons.innerHTML = `
             <button id="logout-btn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Cerrar sesión</button>
+            <button id="admin-toggle-btn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem; display: none;">Panel admin</button>
         `;
 
         document.getElementById('logout-btn').addEventListener('click', async function() {
@@ -152,6 +181,8 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.reload();
         });
     }
+
+    updateAdminToggleButton();
 
     // =========================
     // LOGIN FORM SUBMIT
