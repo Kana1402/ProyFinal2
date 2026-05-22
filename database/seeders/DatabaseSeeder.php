@@ -27,6 +27,14 @@ class DatabaseSeeder extends Seeder
             'telefono' => '12345678'
         ]);
 
+        User::create([
+            'username' => 'usuario',
+            'correo' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'role' => Role::USER,
+            'telefono' => '12345678'
+        ]);
+
         // ───────────────── NOTICIAS ─────────────────
 
         DB::table('noticias')->insert([
@@ -70,8 +78,8 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+// ───────────────── ACTIVIDADES PROGRAMADAS ─────────────────
 
-        // ───────────────── ACTIVIDAD PROGRAMADA ─────────────────
 
         DB::table('actividades_programadas')->insert([
             [

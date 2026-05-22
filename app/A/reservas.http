@@ -1,0 +1,28 @@
+
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "user@gmail.com",
+    "password": "password"
+}
+###
+GET http://127.0.0.1:8000/api/user
+Authorization: Bearer 1|hT1wp1MIguhofZ3VLkmtA0jd1XEZdXLjTMMzbsNcd9363474
+### Crear una reserva
+POST http://127.0.0.1:8000/api/reservas
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 1|hT1wp1MIguhofZ3VLkmtA0jd1XEZdXLjTMMzbsNcd9363474
+
+{
+    "usuario_id": 1,
+    "actividad_id": 1,
+    "cantidad_personas": 2,
+    "notas": "Reserva de prueba"
+}
+
+### Listar reservas
+GET http://127.0.0.1:8000/api/reservas
+Accept: application/json
