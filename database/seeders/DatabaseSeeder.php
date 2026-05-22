@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 use App\Enums\Role;
+use App\Models\Noticia;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -65,6 +66,44 @@ class DatabaseSeeder extends Seeder
                 'descripcion' => 'Recorrido por Cahuita en bote.',
                 'precio' => 18000,
                 'imagen_url' => 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        // ───────────────── ACTIVIDAD PROGRAMADA ─────────────────
+
+        DB::table('actividades_programadas')->insert([
+            [
+                'servicio_id' => 1,
+                'fecha_hora' => now()->addDays(7),
+                'cupo_maximo' => 10,
+                'cupo_disponible' => 10,
+                'estado' => 'PROGRAMADA',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+
+        // ───────────────── JUNTA DIRECTIVA ─────────────────
+
+       // #[Fillable(['nombre', 'puesto', 'biografia', 'foto_url', 'orden_prioridad'])]
+        DB::table('miembros_directiva')->insert([
+            [
+                'nombre' => 'Juan Pérez',
+                'puesto' => 'Presidente',
+                'biografia' => 'Juan es un pescador con 20 años de experiencia en Cahuita.',
+                'foto_url' => 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91',
+                'orden_prioridad' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'nombre' => 'María Gómez',
+                'puesto' => 'Vicepresidenta',
+                'biografia' => 'María es una líder comunitaria comprometida con el desarrollo sostenible.',
+                'foto_url' => 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91',
+                'orden_prioridad' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
