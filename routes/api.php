@@ -4,7 +4,7 @@ use App\Models\ActividadProgramada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\ReservaController;
 /*
 |--------------------------------------------------------------------------
 | RUTAS PÚBLICAS (NIVEL VISITANTE)
@@ -102,8 +102,10 @@ Route::middleware('auth:sanctum')->group(function () {
             'data' => ActividadProgramada::with('servicio')->orderBy('fecha_hora')->get(),
             'message' => 'Actividades programadas accesibles con sesión iniciada',
         ]);
-    });
 
+    });
+// Reservas
+    Route::post('/reservas', [ReservaController::class, 'store']);
     // Rutas del controlador de usuarios: 
     // Exceptuamos 'index' y 'destroy' para que los usuarios normales NO 
     // puedan ver la lista de todos los usuarios ni eliminarlos.
@@ -139,6 +141,7 @@ Route::middleware('auth:sanctum')->group(function () {
             ->only(['store', 'update', 'destroy']);
 
         Route::apiResource('actividades-programadas', \App\Http\Controllers\Api\ActividadProgramadaController::class);
+        
         
     });
 

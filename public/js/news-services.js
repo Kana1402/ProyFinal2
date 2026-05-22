@@ -135,8 +135,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // funcion que abre el modal y muestra los detalles del servicio
 window.abrirModalServicio = function(id) {
-    if (!serviceModal || !reservationForm || !reservaMessage) {
-        console.error("Modal elements not found");
+    console.log("CLICK EN SERVICIO:", id);
+
+    if (!serviceModal) {
+        console.error("No se encontró serviceModal");
         return;
     }
     

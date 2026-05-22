@@ -26,6 +26,14 @@ class DatabaseSeeder extends Seeder
             'telefono' => '12345678'
         ]);
 
+        User::create([
+            'username' => 'usuario',
+            'correo' => 'user@gmail.com',
+            'password' => Hash::make('password'),
+            'role' => Role::USER,
+            'telefono' => '12345678'
+        ]);
+
         // ───────────────── NOTICIAS ─────────────────
 
         DB::table('noticias')->insert([
@@ -69,6 +77,45 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
+// ───────────────── ACTIVIDADES PROGRAMADAS ─────────────────
 
+DB::table('actividades_programadas')->insert([
+    [
+        'servicio_id' => 1,
+        'fecha_hora' => now()->addDays(2),
+        'cupo_maximo' => 20,
+        'cupo_disponible' => 20,
+        'estado' => 'DISPONIBLE',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+    [
+        'servicio_id' => 1,
+        'fecha_hora' => now()->addDays(5),
+        'cupo_maximo' => 15,
+        'cupo_disponible' => 15,
+        'estado' => 'DISPONIBLE',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+    [
+        'servicio_id' => 2,
+        'fecha_hora' => now()->addDays(3),
+        'cupo_maximo' => 10,
+        'cupo_disponible' => 10,
+        'estado' => 'DISPONIBLE',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+    [
+        'servicio_id' => 2,
+        'fecha_hora' => now()->addWeek(),
+        'cupo_maximo' => 12,
+        'cupo_disponible' => 12,
+        'estado' => 'DISPONIBLE',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ],
+]);
     }
 }

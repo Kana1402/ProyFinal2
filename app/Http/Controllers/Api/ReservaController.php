@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\ActividadProgramada;
-use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
