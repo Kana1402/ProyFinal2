@@ -30,6 +30,10 @@
 <body>
     <!--Secciones de la pagina -->
 
+    <div id="admin-panel-switch" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: none;">
+        <button id="admin-panel-toggle-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Ver sitio</button>
+    </div>
+
     <main><!--Contenido principal de la pagina -->
         @yield('content')
     </main>
@@ -52,7 +56,30 @@
     <script src="{{ asset('js/admin-users.js') }}"></script>
     <script src="{{ asset('js/admin-members.js') }}"></script>
     <script src="{{ asset('js/admin-news.js') }}"></script>
-   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const adminPanelToggleBtn = document.getElementById('admin-panel-toggle-btn');
+            const adminPanelSwitch = document.getElementById('admin-panel-switch');
+            if (!adminPanelToggleBtn || !adminPanelSwitch) {
+                return;
+            }
+
+            let authUser = null;
+            try {
+                authUser = JSON.parse(localStorage.getItem('auth_user'));
+            } catch (e) {
+                authUser = null;
+            }
+
+            if (authUser && authUser.role === 'ADMIN') {
+                adminPanelSwitch.style.display = 'block';
+                adminPanelToggleBtn.addEventListener('click', function () {
+                    window.location.href = '/';
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
