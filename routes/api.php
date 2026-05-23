@@ -148,8 +148,6 @@ Route::middleware('auth:sanctum')->group(function () {
         // Reservas 
         Route::get('/reservas', [ReservaController::class, 'index']);
     Route::get('/reservas/{id}', [ReservaController::class, 'show']);
-
-    Route::post('/reservas', [ReservaController::class, 'store']); 
     Route::put('/reservas/{id}', [ReservaController::class, 'update']); 
     Route::delete('/reservas/{id}', [ReservaController::class, 'destroy']);
     });

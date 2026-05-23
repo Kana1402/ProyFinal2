@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-
+cargarActividadesSelect();
     const tableBody = document.getElementById("admin-reservas-table-body");
     const form = document.getElementById("admin-reserva-form");
     const btnRefresh = document.getElementById("refresh-reservas-btn");
