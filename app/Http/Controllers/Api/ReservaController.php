@@ -159,7 +159,32 @@ class ReservaController extends Controller
         'notas' => 'nullable|string',
         'estado' => 'nullable|string'
     ]);
+$actividad = ActividadProgramada::find($reserva->actividad_id);
 
+    // 🔥 AJUSTE DE CUPOS SI CAMBIA LA CANTIDAD
+    if ($request->has('cantidad_personas')) {
+
+        $diferencia = (int)$request->cantidad_personas - (int)$reserva->cantidad_personas;
+
+        // si aumenta la cantidad → restar cupos
+        if ($diferencia > 0) {
+            if ($actividad->cupo_disponible < $diferencia) {
+                return response()->json([
+                    'message' => 'No hay cupos suficientes para el cambio'
+                ], 400);
+            }
+            $actividad->cupo_disponible -= $diferencia;
+        }
+
+        // si reduce la cantidad → devolver cupos
+        if ($diferencia < 0) {
+            $actividad->cupo_disponible += abs($diferencia);
+        }
+
+        $actividad->save();
+
+        $reserva->cantidad_personas = $request->cantidad_personas;
+    }
     // actualizar campos si vienen
     if ($request->has('actividad_id')) {
         $reserva->actividad_id = $request->actividad_id;

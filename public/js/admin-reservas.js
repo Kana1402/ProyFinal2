@@ -34,7 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+const btnCancelEdit = document.getElementById("cancel-reserva-edit-btn");
 
+btnCancelEdit.addEventListener("click", () => {
+    form.reset();
+    idInput.value = "";
+
+    // opcional pero recomendable: resetear select correctamente
+    actividad.value = "";
+
+    btnCancelEdit.hidden = true;
+});
     // =======================
     // CARGAR RESERVAS
     // =======================
@@ -53,13 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
         tableBody.innerHTML = "";
 
         data.forEach(r => {
-
             const row = document.createElement("tr");
 
             row.innerHTML = `
                 <td>${r.id}</td>
                 <td>${r.usuario?.username ?? ""}</td>
-                <td>${r.actividad?.servicio?.titulo ?? ""}</td>
+                <td>${r.actividad_id}</td>
                 <td>${r.cantidad_personas}</td>
                 <td>${r.estado}</td>
                 <td>
@@ -114,15 +123,19 @@ async function cargarActividadesSelect() {
     // =======================
     // EDITAR
     // =======================
-    function editarReserva(r) {
-        cargarActividadesSelect();
-        idInput.value = r.id;
-        usuario.value = r.usuario_id;
+ function editarReserva(r) {
+    cargarActividadesSelect().then(() => {
         actividad.value = r.actividad_id;
-        cantidad.value = r.cantidad_personas;
-        estado.value = r.estado;
-        notas.value = r.notas ?? "";
-    }
+    });
+
+    idInput.value = r.id;
+    usuario.value = r.usuario_id;
+    cantidad.value = r.cantidad_personas;
+    estado.value = r.estado;
+    notas.value = r.notas ?? "";
+
+    btnCancelEdit.hidden = false;
+}
 
     // =======================
     // ELIMINAR
