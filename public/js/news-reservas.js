@@ -118,7 +118,12 @@ async function cargarActividades(servicioId) {
                 const option = document.createElement("option");
 
                 option.value = actividad.id;
-                option.textContent = `${fecha} - Cupos: ${actividad.cupo_disponible}`;
+                if (actividad.estado === 'COMPLETA' || actividad.cupo_disponible <= 0) {
+                    option.textContent = `${fecha} - COMPLETA`;
+                    option.disabled = true;
+                } else {
+                    option.textContent = `${fecha} - Cupos: ${actividad.cupo_disponible}`;
+                }
 
                 select.appendChild(option);
             });

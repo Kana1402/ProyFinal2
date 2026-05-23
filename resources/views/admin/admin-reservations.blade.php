@@ -11,9 +11,17 @@
                 Gestiona las reservas realizadas por los usuarios.
             </p>
 
-            <button class="btn btn-secondary" type="button" id="refresh-reservas-btn">
-                Actualizar lista
-            </button>
+            <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <select id="filter-reservas-select" style="padding: 5px; border-radius: 4px; border: 1px solid #ccc; flex: 1; max-width: 250px;">
+                    <option value="">Todos los servicios</option>
+                </select>
+                <button class="btn btn-secondary" type="button" id="refresh-reservas-btn">
+                    Actualizar lista
+                </button>
+                <button class="btn btn-primary" type="button" id="export-reservas-btn">
+                    Descargar Excel
+                </button>
+            </div>
         </div>
 
         <!-- FORM CRUD (EDITAR COMPLETO) -->
@@ -49,11 +57,10 @@
                     </select>
                 </label>
 
-                <label class="admin-form-wide">
+                <label style="grid-column: 1 / -1;">
                     Notas
-                    <textarea id="admin-reserva-notas" rows="3"></textarea>
+                    <textarea id="admin-reserva-notas" rows="2" placeholder="Notas opcionales..."></textarea>
                 </label>
-
             </div>
 
             <div class="admin-form-actions">
@@ -76,6 +83,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Usuario</th>
+                        <th>WhatsApp</th>
                         <th>Actividad</th>
                         <th>Personas</th>
                         <th>Estado</th>
@@ -85,7 +93,7 @@
 
                 <tbody id="admin-reservas-table-body">
                     <tr>
-                        <td colspan="6">Abre el panel para cargar reservas.</td>
+                        <td colspan="7">Abre el panel para cargar reservas.</td>
                     </tr>
                 </tbody>
 

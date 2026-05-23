@@ -30,8 +30,8 @@
 <body>
     <!--Secciones de la pagina -->
 
-    <div id="admin-panel-switch" style="position: fixed; top: 1rem; right: 1rem; z-index: 1000; display: none;">
-        <button id="admin-panel-toggle-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Ver sitio</button>
+    <div id="admin-panel-switch" class="admin-site-switch">
+        <button id="admin-panel-toggle-btn" class="btn btn-secondary admin-site-switch-btn">Ver sitio</button>
     </div>
 
     <main><!--Contenido principal de la pagina -->

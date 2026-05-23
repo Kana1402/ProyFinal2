@@ -111,6 +111,25 @@ class UserController extends Controller
             return response()->json(['message' => 'Usuario no encontrado'], 404);
         }
 
+        // DEVOLVER CUPOS DE LAS RESERVAS ACTIVAS ANTES DE ELIMINAR EL USUARIO
+        $reservasActivas = \App\Models\Reserva::where('usuario_id', $user->id)
+            ->where('estado', '!=', 'CANCELADA')
+            ->get();
+
+        foreach ($reservasActivas as $reserva) {
+            $actividad = \App\Models\ActividadProgramada::find($reserva->actividad_id);
+            if ($actividad) {
+                $actividad->cupo_disponible += $reserva->cantidad_personas;
+                
+                // Si la actividad estaba completa, ahora vuelve a estar programada
+                if ($actividad->estado === \App\Enums\EstadoActividad::COMPLETA && $actividad->cupo_disponible > 0) {
+                    $actividad->estado = \App\Enums\EstadoActividad::PROGRAMADA;
+                }
+                $actividad->save();
+            }
+        }
+
+        // La base de datos eliminará las reservas en cascada al eliminar el usuario
         $user->delete();
 
         return response()->json(['message' => 'Usuario eliminado con éxito']);

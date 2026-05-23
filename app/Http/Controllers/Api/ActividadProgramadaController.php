@@ -31,6 +31,7 @@ class ActividadProgramadaController extends Controller
     {
         $actividades = ActividadProgramada::with('servicio')
             ->where('servicio_id', $servicioId)
+            ->where('fecha_hora', '>=', now())
             ->orderBy('fecha_hora')
             ->get();
 
