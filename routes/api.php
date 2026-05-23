@@ -105,7 +105,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     });
 // Reservas
+    Route::get('/reservas', [ReservaController::class, 'index']);
     Route::post('/reservas', [ReservaController::class, 'store']);
+    Route::get('/reservas/{id}', [ReservaController::class, 'show']);
+    Route::delete('/reservas/{id}', [ReservaController::class, 'destroy']);
     // Rutas del controlador de usuarios: 
     // Exceptuamos 'index' y 'destroy' para que los usuarios normales NO 
     // puedan ver la lista de todos los usuarios ni eliminarlos.
@@ -142,7 +145,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::apiResource('actividades-programadas', \App\Http\Controllers\Api\ActividadProgramadaController::class);
         
-        
+        // Reservas 
+        Route::get('/reservas', [ReservaController::class, 'index']);
+    Route::get('/reservas/{id}', [ReservaController::class, 'show']);
+
+    Route::post('/reservas', [ReservaController::class, 'store']); 
+    Route::put('/reservas/{id}', [ReservaController::class, 'update']); 
+    Route::delete('/reservas/{id}', [ReservaController::class, 'destroy']);
     });
 
     

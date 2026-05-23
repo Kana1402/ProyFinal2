@@ -43,63 +43,54 @@ document.addEventListener("DOMContentLoaded", () => {
     // FORMULARIO
     const form = document.getElementById("reservation-form");
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        const actividadId = document.getElementById("reserva-actividad").value;
-        const cantidad = document.getElementById("reserva-personas").value;
-        const notas = document.getElementById("reserva-notas").value;
-        const usuarioId = document.getElementById("reserva-usuario-id").value;
+    const actividadId = document.getElementById("reserva-actividad").value;
+    const cantidad = document.getElementById("reserva-personas").value;
+    const notas = document.getElementById("reserva-notas").value;
+    const token = localStorage.getItem("auth_token");
 
-        const messageBox = document.getElementById("reserva-message");
+    const messageBox = document.getElementById("reserva-message");
 
-        try {
+    if (!actividadId) {
+        messageBox.innerText = "Selecciona una actividad";
+        messageBox.style.color = "red";
+        return;
+    }
 
-            const response = await fetch("/api/reservas", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    usuario_id: usuarioId,
-                    actividad_programada_id: actividadId,
-                    cantidad_personas: cantidad,
-                    notas: notas
-                })
-            });
+    try {
 
-            const data = await response.json();
+        const response = await fetch("/api/reservas", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                actividad_id: actividadId,
+                cantidad_personas: cantidad,
+                notas: notas
+            })
+        });
 
-            if (response.ok) {
+        const data = await response.json();
 
-                messageBox.style.display = "block";
-                messageBox.style.color = "#22c55e";
-                messageBox.innerText = "Reserva realizada correctamente";
-
-                form.reset();
-
-            } else {
-
-                messageBox.style.display = "block";
-                messageBox.style.color = "#ef4444";
-
-                if (data.message) {
-                    messageBox.innerText = data.message;
-                } else {
-                    messageBox.innerText = "Error al realizar reserva";
-                }
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-            messageBox.style.display = "block";
-            messageBox.style.color = "#ef4444";
-            messageBox.innerText = "Error al conectar con el servidor";
+        if (response.ok) {
+            messageBox.innerText = "Reserva creada ✔";
+            messageBox.style.color = "green";
+            form.reset();
+        } else {
+            messageBox.innerText = data.message;
+            messageBox.style.color = "red";
         }
-    });
+
+    } catch (error) {
+        messageBox.innerText = "Error de conexión";
+        messageBox.style.color = "red";
+    }
+});
 });
 
 // CARGAR ACTIVIDADES DISPONIBLES
@@ -127,7 +118,7 @@ async function cargarActividades(servicioId) {
                 const option = document.createElement("option");
 
                 option.value = actividad.id;
-                option.textContent = `${fecha} - Cupos: ${actividad.cupos_disponibles}`;
+                option.textContent = `${fecha} - Cupos: ${actividad.cupo_disponible}`;
 
                 select.appendChild(option);
             });

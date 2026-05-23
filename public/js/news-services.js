@@ -93,6 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
         reservationForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+const token = localStorage.getItem('auth_token');
+
             const data = {
                 usuario_id: document.getElementById('reserva-usuario-id').value,
                 actividad_id: document.getElementById('reserva-actividad').value,
@@ -105,7 +107,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(data)
             })

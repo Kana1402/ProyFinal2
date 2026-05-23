@@ -9,12 +9,12 @@ Accept: application/json
 }
 ###
 GET http://127.0.0.1:8000/api/user
-Authorization: Bearer 1|hT1wp1MIguhofZ3VLkmtA0jd1XEZdXLjTMMzbsNcd9363474
+Authorization: Bearer 3|liXupJGsUVQuZPcNOhcd7gATZw9YoP2hRvz0nn3c2444213d
 ### Crear una reserva
 POST http://127.0.0.1:8000/api/reservas
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 1|hT1wp1MIguhofZ3VLkmtA0jd1XEZdXLjTMMzbsNcd9363474
+Authorization: Bearer 3|liXupJGsUVQuZPcNOhcd7gATZw9YoP2hRvz0nn3c2444213d
 
 {
     "usuario_id": 1,
@@ -24,5 +24,6 @@ Authorization: Bearer 1|hT1wp1MIguhofZ3VLkmtA0jd1XEZdXLjTMMzbsNcd9363474
 }
 
 ### Listar reservas
-GET http://127.0.0.1:8000/api/reservas
+POST  http://127.0.0.1:8000/api/reservas
 Accept: application/json
+Authorization: Bearer 3|liXupJGsUVQuZPcNOhcd7gATZw9YoP2hRvz0nn3c2444213d
