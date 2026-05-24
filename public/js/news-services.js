@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    if (reservationForm) {
+if (reservationForm) {
         reservationForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -102,6 +102,7 @@ const token = localStorage.getItem('auth_token');
                 notas: document.getElementById('reserva-notas').value,
                 estado: 'PENDIENTE'
             };
+            console.log(data);
 
             fetch('/api/reservas', {
                 method: 'POST',
@@ -112,10 +113,20 @@ const token = localStorage.getItem('auth_token');
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => {
-                if (!response.ok) throw new Error('Error al realizar la reserva');
-                return response.json();
-            })
+            
+            .then(async response => {
+
+    const result = await response.json();
+
+    console.log("STATUS:", response.status);
+    console.log("RESULT:", result);
+
+    if (!response.ok) {
+        throw new Error(result.message || 'Error al realizar la reserva');
+    }
+
+    return result;
+})
             .then(result => {
                 reservaMessage.style.display = "block";
                 reservaMessage.style.color = "#34d399";
@@ -127,11 +138,13 @@ const token = localStorage.getItem('auth_token');
                 }, 2000);
             })
             .catch(error => {
-                console.error('Error:', error);
-                reservaMessage.style.display = "block";
-                reservaMessage.style.color = "#ef4444";
-                reservaMessage.innerText = "Error al procesar la reserva. Intenta de nuevo.";
-            });
+    console.error(error);
+
+    reservaMessage.style.display = "block";
+    reservaMessage.style.color = "#ef4444";
+    reservaMessage.innerText = error.message;
+});
+            console.log("RESPUESTA API:", data);
         });
     }
 });

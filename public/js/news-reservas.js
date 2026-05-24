@@ -77,7 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
 
-        if (response.ok) {
+console.log("STATUS:", response.status);
+console.log("DATA:", data);
+
+if (response.ok) {
             messageBox.innerText = "Reserva creada ✔";
             messageBox.style.color = "green";
             form.reset();
