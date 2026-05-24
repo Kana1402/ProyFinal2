@@ -7,7 +7,7 @@
             <a href="#" class="btn-green">{{ __('messages.about_button') }}</a>
         </div>
         <div class="quienes-somos-image">
-            <img src="{{ asset('images/about-us.png') }}" alt="Cahuita" class="square-img">
+       
         </div>
     </div>
 </section>
