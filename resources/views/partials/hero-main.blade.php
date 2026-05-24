@@ -1,9 +1,9 @@
 <section class="hero" id="hero">
     <div class="hero-content">
-        <h1>Cahuita en tus manos</h1>
-        <p>Tradición pesquera, aventura segura. Reserva tu experiencia en el Parque Nacional Cahuita.</p>
+         <h1>{{ __('messages.hero_title') }}</h1>
+       <p>{{ __('messages.hero_description') }}</p>
         <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="#news" class="btn btn-primary">Ver servicios disponibles</a>
+            <a href="#news" class="btn btn-primary">{{ __('messages.hero_button') }}</a>
         </div>
     </div>
 </section>

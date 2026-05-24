@@ -1,5 +1,7 @@
 <?php
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,3 +23,11 @@ Route::get('/services', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+
+Route::post('/language-switch', function (Request $request) {
+
+    Session::put('locale', $request->locale);
+
+    return redirect()->back();
+
+})->name('language.switch');
