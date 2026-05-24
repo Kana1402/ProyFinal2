@@ -2,6 +2,22 @@
 // esta funcion se llama desde el archivo news.blade.php que esta en la carpeta partials
 // y recibe como parametro el contenedor donde se van a mostrar las noticias y el limite de noticias a mostrar
 
+// Global helpers to lock/unlock body scroll so they are available to all scopes
+window.lockBodyScroll = function () {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    document.body.dataset.scrollY = scrollY;
+    document.body.style.top = `-${scrollY}px`;
+    document.body.classList.add('modal-open');
+};
+
+window.unlockBodyScroll = function () {
+    const stored = document.body.dataset.scrollY || 0;
+    document.body.classList.remove('modal-open');
+    document.body.style.top = '';
+    window.scrollTo(0, parseInt(stored, 10) || 0);
+    delete document.body.dataset.scrollY;
+};
+
 document.addEventListener("DOMContentLoaded", function () {
     const fullContainer = document.getElementById("publicaciones-container");
     const recentContainer = document.getElementById("recent-news-container");
@@ -10,10 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const modal = document.getElementById("news-modal");
     const closeModal = modal ? modal.querySelector(".close-modal") : null;
 
+    // helper: lock/unlock body scroll while modal open
+    function lockBodyScroll() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        document.body.dataset.scrollY = scrollY;
+        document.body.style.top = `-${scrollY}px`;
+        document.body.classList.add('modal-open');
+    }
+
+    function unlockBodyScroll() {
+        const stored = document.body.dataset.scrollY || 0;
+        document.body.classList.remove('modal-open');
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(stored, 10) || 0);
+        delete document.body.dataset.scrollY;
+    }
+
     if (modal && closeModal) {
         closeModal.addEventListener("click", function () {
             modal.style.display = "none";
-            document.body.style.overflow = "auto";
+            unlockBodyScroll();
         });
     }
 
@@ -22,10 +54,19 @@ document.addEventListener("DOMContentLoaded", function () {
         window.addEventListener("click", function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
-                document.body.style.overflow = "auto";
+                unlockBodyScroll();
             }
         });
     }
+
+    // cerrar con Escape
+    document.addEventListener('keydown', function(e){
+        if (!modal) return;
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            modal.style.display = 'none';
+            unlockBodyScroll();
+        }
+    });
 
     // carga las noticias en el contenedor
     if (fullContainer) {
@@ -115,5 +156,5 @@ function openModal(noticia, fecha) {
 
     modal.style.display = "flex";
     modal.querySelector(".modal-content").scrollTop = 0; // Reset scroll
-    document.body.style.overflow = "hidden"; // Bloquear scroll del body
+    lockBodyScroll(); // Bloquear scroll del body y fijar posición
 }

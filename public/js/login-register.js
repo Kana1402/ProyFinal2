@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateAdminToggleButton() {
         const adminToggleBtn = document.getElementById('admin-toggle-btn');
+        const adminToggleBtnMobile = document.getElementById('admin-toggle-btn-mobile');
         if (!adminToggleBtn) {
             return;
         }
@@ -146,15 +147,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (authUser && authUser.role === 'ADMIN') {
             adminToggleBtn.style.display = 'inline-flex';
+            if (adminToggleBtnMobile) adminToggleBtnMobile.style.display = 'block';
             if (window.location.pathname === '/admin') {
                 adminToggleBtn.textContent = 'Ver sitio';
                 adminToggleBtn.onclick = () => window.location.href = '/';
+                if (adminToggleBtnMobile) {
+                    adminToggleBtnMobile.textContent = 'Ver sitio';
+                    adminToggleBtnMobile.onclick = () => window.location.href = '/';
+                }
             } else {
                 adminToggleBtn.textContent = 'Panel admin';
                 adminToggleBtn.onclick = () => window.location.href = '/admin';
+                if (adminToggleBtnMobile) {
+                    adminToggleBtnMobile.textContent = 'Panel admin';
+                    adminToggleBtnMobile.onclick = () => window.location.href = '/admin';
+                }
             }
         } else {
             adminToggleBtn.style.display = 'none';
+            if (adminToggleBtnMobile) adminToggleBtnMobile.style.display = 'none';
         }
     }
 
@@ -164,7 +175,19 @@ document.addEventListener('DOMContentLoaded', function () {
             <button id="admin-toggle-btn" class="btn btn-secondary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem; display: none;">Panel admin</button>
         `;
 
-        document.getElementById('logout-btn').addEventListener('click', async function() {
+        // Actualizar menú móvil también
+        const navAuthMobile = document.querySelector('.nav-auth-mobile');
+        if (navAuthMobile) {
+            navAuthMobile.innerHTML = `
+                <button id="logout-btn-mobile" class="btn btn-secondary nav-btn-mobile">Cerrar sesión</button>
+                <button id="admin-toggle-btn-mobile" class="btn btn-secondary nav-btn-mobile" style="display: none;">Panel admin</button>
+            `;
+            document.getElementById('logout-btn-mobile').addEventListener('click', function() {
+                document.getElementById('logout-btn').click();
+            });
+        }
+
+        async function handleLogout() {
             try {
                 await fetch('/api/logout', {
                     method: 'POST',
@@ -179,7 +202,9 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.removeItem('auth_token');
             localStorage.removeItem('auth_user');
             window.location.reload();
-        });
+        }
+
+        document.getElementById('logout-btn').addEventListener('click', handleLogout);
     }
 
     updateAdminToggleButton();

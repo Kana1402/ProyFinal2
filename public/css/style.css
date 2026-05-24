@@ -31,11 +31,18 @@
     font-family: 'Inter', sans-serif;
 }
 
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
 body {
     background-color: #000000;
     color: var(--text-light);
     line-height: 1.6;
     overflow-x: hidden;
+    max-width: 100%;
+    position: relative;
 }
 
 /* --- Botones Globales --- */
@@ -113,11 +120,6 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- Media queries globales --- */
-@media (max-width: 768px) {
-    .section-title { font-size: 2.2rem; }
-}
-
 /*---- Estilos de la seccion del hero de la pagina de inicio ----*/
 .hero {
     height: 120vh;
@@ -155,7 +157,6 @@ body {
     margin: 0 auto 3.5rem;
 }
 
-
 /*---- Estilos de la seccion de noticias de la pagina de inicio ----*/
 .section-news {
     padding: 160px 10%;
@@ -173,3 +174,97 @@ body {
     position: relative;
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 992px
+   =========================== */
+@media (max-width: 992px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .section-title-left {
+        font-size: 2.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .section-news {
+        padding: 100px 6%;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 768px
+   =========================== */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .section-title-left {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero {
+        height: 100vh;
+        min-height: 600px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .btn {
+        padding: 0.85rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-green {
+        padding: 0.85rem 2.5rem;
+        font-size: 1rem;
+    }
+
+    .section-news {
+        padding: 80px 5%;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 480px
+   =========================== */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title-left {
+        font-size: 1.7rem;
+    }
+
+    .section-news {
+        padding: 60px 4%;
+    }
+}

@@ -8,10 +8,10 @@
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(24, 57, 43, 0.063); /* Evergreen con transparencia */
+    background: rgba(24, 57, 43, 0.063);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 1.4rem 1.2rem 1.4rem 1.2rem;
+    padding: 1.4rem 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,14 +23,16 @@
     background: linear-gradient(to right, #ffffff, #066839);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    flex-shrink: 0;
 }
 
+/* ---- Nav Links (desktop) ---- */
 .nav-links {
     display: flex;
     gap: 3rem;
 }
 
-.nav-links a {
+.nav-links .nav-link {
     color: #cbd5e1;
     text-decoration: none;
     font-weight: 700;
@@ -38,8 +40,25 @@
     transition: color 0.3s;
 }
 
-.nav-links a:hover {
+.nav-links .nav-link:hover {
     color: #066839;
+}
+
+/* Botón cerrar del panel móvil — oculto en desktop */
+.nav-close-btn {
+    display: none;
+}
+
+/* Auth mobile block — oculto en desktop */
+.nav-auth-mobile {
+    display: none;
+}
+
+/* ---- Auth Buttons (desktop) ---- */
+.auth-buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 .btn-auth {
@@ -58,6 +77,7 @@
     color: #066839;
 }
 
+/* ---- Language Switch ---- */
 .language-switch {
     display: inline-flex;
     align-items: center;
@@ -81,7 +101,7 @@
     cursor: pointer;
     transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14);
-   background-repeat: no-repeat;
+    background-repeat: no-repeat;
     background-position: 0 0;
     background-size: 100% 100%;
 }
@@ -102,7 +122,74 @@
     outline: none;
 }
 
-/* Footer Styles - Deep Forest Theme */
+/* ---- Hamburger Button ---- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s ease;
+    z-index: 1100;
+    flex-shrink: 0;
+}
+
+.hamburger:hover {
+    background: rgba(6, 104, 57, 0.2);
+    border-color: rgba(6, 104, 57, 0.4);
+}
+
+.ham-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #cbd5e1;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.2s ease;
+    transform-origin: center;
+}
+
+/* Animación X al abrir el menú */
+.hamburger.is-active .ham-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    background: #34d399;
+}
+.hamburger.is-active .ham-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger.is-active .ham-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+    background: #34d399;
+}
+
+/* ---- Nav Overlay (fondo oscuro detrás del menú móvil) ---- */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1050;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.nav-overlay.overlay-active {
+    display: block;
+    opacity: 1;
+}
+
+/* ===========================
+   Footer Styles - Deep Forest
+   =========================== */
 .main-footer {
     background: linear-gradient(to bottom,
         rgba(0, 0, 0, 1) 0%,
@@ -162,7 +249,7 @@
 .footer-map iframe {
     width: 100%;
     border-radius: 20px;
-    filter: invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2); /* Efecto de modo oscuro */
+    filter: invert(90%) hue-rotate(180deg) brightness(0.8) contrast(1.2);
     transition: filter 0.3s ease;
 }
 
@@ -170,6 +257,125 @@
     filter: invert(90%) hue-rotate(180deg) brightness(1) contrast(1.2);
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 992px
+   =========================== */
 @media (max-width: 992px) {
-    .nav-links { display: none; }
+    /* Mostrar hamburguesa, ocultar nav desktop */
+    .hamburger {
+        display: flex;
+    }
+
+    .auth-buttons {
+        display: none;
+    }
+
+    /* Panel lateral de navegación */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        height: 100vh;
+        background: linear-gradient(160deg, #0f2a1d 0%, #1a3a2a 60%, #0d1f17 100%);
+        border-left: 1px solid rgba(6, 104, 57, 0.25);
+        flex-direction: column;
+        gap: 0;
+        padding: 5rem 0 2rem;
+        z-index: 1100;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links.nav-open {
+        right: 0;
+    }
+
+    .nav-links .nav-link {
+        display: block;
+        padding: 1.1rem 2rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #e2e8f0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background 0.2s, color 0.2s, padding-left 0.2s;
+    }
+
+    .nav-links .nav-link:hover {
+        background: rgba(6, 104, 57, 0.15);
+        color: #34d399;
+        padding-left: 2.5rem;
+    }
+
+    /* Botón X dentro del panel */
+    .nav-close-btn {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+        background: none;
+        border: none;
+        color: #94a3b8;
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s;
+    }
+
+    .nav-close-btn:hover {
+        color: #34d399;
+    }
+
+    /* Auth buttons dentro del menú móvil */
+    .nav-auth-mobile {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 2rem;
+        margin-top: auto;
+    }
+
+    .nav-btn-mobile {
+        padding: 0.8rem 1rem !important;
+        font-size: 0.95rem !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Footer */
+    .footer-container {
+        gap: 40px;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 480px
+   =========================== */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .language-switch {
+        margin-right: 0.8rem;
+    }
+
+    .main-footer {
+        padding: 60px 6% 40px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-col h4 {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
 }

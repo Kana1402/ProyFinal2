@@ -2,6 +2,7 @@
    PUBLICATIONS AND SERVICES - publication-and-services.css
    Cargado en: partials/publication-and-services.blade.php
    =========================== */
+
 .loading {
     grid-column: 1 / -1;
     text-align: center;
@@ -9,7 +10,6 @@
     color: #94a3b8;
     font-style: italic;
 }
-
 
 .news-grid {
     display: grid;
@@ -140,6 +140,9 @@
     line-height: 1.7;
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 1100px
+   =========================== */
 @media (max-width: 1100px) {
     .news-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -147,7 +150,54 @@
     }
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 768px
+   =========================== */
 @media (max-width: 768px) {
-    .news-grid { grid-template-columns: 1fr; }
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .news-card {
+        height: 320px;
+    }
+
+    .news-card-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .news-card-overlay {
+        padding: 1.5rem;
+    }
 }
 
+/* ===========================
+   RESPONSIVE - Mobile 480px
+   =========================== */
+@media (max-width: 480px) {
+    .news-grid {
+        gap: 1.2rem;
+    }
+
+    .news-card {
+        height: 280px;
+    }
+
+    .news-card-title {
+        font-size: 1.15rem;
+    }
+
+    .news-card-author {
+        font-size: 0.7rem;
+    }
+
+    .news-card-date {
+        font-size: 0.78rem;
+    }
+
+    .btn-read-more {
+        font-size: 0.82rem;
+    }
+}

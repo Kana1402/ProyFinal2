@@ -13,6 +13,9 @@
     background-size: cover;
     background-position: center;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .quienes-somos-container {
@@ -55,14 +58,6 @@
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: 992px) {
-    .quienes-somos-container {
-        flex-direction: column;
-    }
-}
-
-
-
 /* ==========================================================================
    SHARED ELEMENTS
    ========================================================================== */
@@ -76,12 +71,13 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ==========================================================================
    WHO WE ARE SECTION
    ========================================================================== */
-
 
 .who-we-are-section {
     padding: 180px 10%;
@@ -102,6 +98,9 @@
     background-size: cover;
     background-position: right center;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .wwa-header {
@@ -110,6 +109,8 @@
     max-width: 600px;
     margin-left: 0;
     margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .wwa-subtitle {
@@ -117,7 +118,10 @@
     line-height: 1.8;
     color: #94a3b8;
     max-width: 580px;
+    width: 100%;
     margin: 0 0 1.5rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ==========================================================================
@@ -138,11 +142,15 @@
     background-size: cover;
     background-position: center;
     position: relative;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .mv-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 10%;
 }
 
 .mv-header {
@@ -228,6 +236,40 @@
     color: #94a3b8;
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 992px
+   =========================== */
+@media (max-width: 992px) {
+    .quienes-somos-container {
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .quienes-somos-image {
+        justify-content: center;
+    }
+
+    .quienes-somos {
+        padding: 100px 6%;
+    }
+
+    .who-we-are-section {
+        padding: 100px 6%;
+        background-position: center center;
+    }
+
+    .mv-container {
+        padding: 0 6%;
+    }
+
+    .wwa-header {
+        max-width: 100%;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 768px
+   =========================== */
 @media (max-width: 768px) {
     .mv-cards {
         grid-template-columns: 1fr;
@@ -243,6 +285,81 @@
     }
 
     .wwa-title {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+    }
+
+    .quienes-somos {
+        padding: 80px 5%;
+    }
+
+    .quienes-somos-text p {
+        font-size: 1.05rem;
+    }
+
+    .square-img {
+        max-width: 100%;
+    }
+
+    .mv-header {
+        margin-bottom: 3rem;
+    }
+
+    .wwa-header {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+    }
+
+    .wwa-subtitle {
+        max-width: 100%;
+        font-size: 0.93rem;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 480px
+   =========================== */
+@media (max-width: 480px) {
+    .quienes-somos,
+    .who-we-are-section {
+        padding: 60px 4%;
+    }
+
+    .wwa-title {
+        font-size: 1.5rem;
+    }
+
+    .mv-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .mv-card-title {
+        font-size: 1.4rem;
+    }
+
+    .mv-card-text {
+        font-size: 0.95rem;
+    }
+
+    .mv-container {
+        padding: 0 4%;
+    }
+
+    .quienes-somos-text p {
+        font-size: 0.95rem;
+    }
+
+    .wwa-header {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .wwa-subtitle {
+        max-width: 100%;
+        font-size: 0.88rem;
     }
 }

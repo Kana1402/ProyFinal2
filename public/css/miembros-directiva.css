@@ -33,7 +33,7 @@
 
 .board-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2.5rem;
     max-width: 1300px;
     margin: 0 auto;
@@ -159,11 +159,80 @@
     transform: scaleX(1);
 }
 
+/* ===========================
+   RESPONSIVE - Tablet 992px
+   =========================== */
+@media (max-width: 992px) {
+    .board-section {
+        padding: 100px 6%;
+    }
+
+    .board-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 2rem;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 768px
+   =========================== */
 @media (max-width: 768px) {
     .board-section {
         padding: 80px 5%;
     }
+
     .board-card-content {
         padding: 2.5rem 1.5rem;
+    }
+
+    .board-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .board-img-container {
+        width: 110px;
+        height: 110px;
+    }
+
+    .board-name {
+        font-size: 1.3rem;
+    }
+
+    .board-role {
+        font-size: 0.78rem;
+        letter-spacing: 1px;
+    }
+
+    .board-bio {
+        font-size: 0.88rem;
+    }
+}
+
+/* ===========================
+   RESPONSIVE - Mobile 480px
+   =========================== */
+@media (max-width: 480px) {
+    .board-section {
+        padding: 60px 4%;
+    }
+
+    .board-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .board-card-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .board-img-container {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 1.5rem;
+    }
+
+    .board-name {
+        font-size: 1.2rem;
     }
 }
